@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Settings</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden; /* Prevent scrollbars on the body */
+      }
+      .titlebar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #c99a35; /* Change this to your desired color */
+        color: white;
+        height: 30px;
+        -webkit-user-select: none;
+        -webkit-app-region: drag;
+        padding: 0 10px;
+        flex-shrink: 0;
+      }
+      .titlebar .controls {
+        display: flex;
+        -webkit-app-region: no-drag;
+      }
+      .titlebar .controls button {
+        background: none;
+        border: none;
+        color: white;
+        padding: 0 10px;
+        cursor: pointer;
+      }
+      .titlebar .controls button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      .titlebar img {
+        height: 20px;
+        margin-right: 10px;
+      }
+      .titlebar-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .main {
+        flex-grow: 1;
+        background: url("https://runejs.org/rsbg.0c5036f83fd4ee098623.png")
+          repeat;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        color: white;
+        padding: 10px;
+        box-sizing: border-box; /* Ensure padding doesn't add to element size */
+        overflow-y: auto; /* Allow vertical scrolling */
+      }
+      .content {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .content h1 {
+        margin: 0;
+        font-size: 1.5em;
+      }
+      #backButton {
+        margin: 10px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      form label {
+        margin-top: 10px;
+      }
+      form input,
+      form button {
+        margin-top: 5px;
+      }
+      .hidden {
+        display: none;
+      }
+      .pushable {
+        background: #977222;
+        border: none;
+        border-radius: 12px;
+        padding: 0;
+        cursor: pointer;
+      }
+      .pushable:first-of-type {
+        margin-bottom: 25px;
+      }
+      .front {
+        display: block;
+        padding: 6px 24px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background: #c99a35;
+        color: white;
+        transform: translateY(-4px);
+      }
+      .pushable:focus:not(:focus-visible) {
+        outline: none;
+      }
+      .front {
+        will-change: transform;
+        transition: transform 250ms;
+      }
+      .pushable:hover .front {
+        transform: translateY(-6px);
+      }
+      .pushable:active .front {
+        transform: translateY(-2px);
+      }
+      .bottom-controls {
+        margin-top: 30px;
+      }
+      .inline-fields {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="titlebar">
+      <div class="titlebar-content">
+        <img src="assets/icon.ico" alt="App Icon" />
+        <span>RuneTron</span>
+      </div>
+      <div class="controls">
+        <button id="close">close</button>
+      </div>
+    </div>
+    <div class="main">
+      <div class="content">
+        <button type="button" id="backButton" class="pushable">
+          <span class="front">back</span>
+        </button>
+        <form id="settingsForm">
+          <label for="gameAddress">Game Address:</label>
+          <input type="text" id="gameAddress" name="gameAddress" />
+          <label for="gamePort">Game Port:</label>
+          <input type="text" id="gamePort" name="gamePort" />
+          <label for="cacheDir">Cache Directory:</label>
+          <input type="text" id="cacheDir" name="cacheDir" />
+          <label for="rsaPub">RSA Public:</label>
+          <input type="text" id="rsaPub" name="rsaPub" />
+          <label for="rsaModulus">RSA Modulus:</label>
+          <input type="text" id="rsaModulus" name="rsaModulus" />
+          <label for="useStaticCredentials">Use Static Credentials:</label>
+          <input
+            type="checkbox"
+            id="useStaticCredentials"
+            name="useStaticCredentials"
+          />
+          <div id="staticCredentialsFields" class="hidden">
+            <div class="inline-fields">
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" />
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" />
+            </div>
+          </div>
+          <label for="javaDir">Java Directory:</label>
+          <input type="text" id="javaDir" name="javaDir" />
+          <button type="button" id="browseJavaDir" class="pushable">
+            <span class="front">browse...</span>
+          </button>
+          <label for="jarDir">JAR Directory:</label>
+          <input type="text" id="jarDir" name="jarDir" />
+          <button type="button" id="browseJarDir" class="pushable">
+            <span class="front">browse...</span>
+          </button>
+          <div class="bottom-controls">
+            <button type="button" id="saveSettingsButton" class="pushable">
+              <span class="front">save</span>
+            </button>
+            <button type="button" id="restoreDefaultsButton" class="pushable">
+              <span class="front">restore</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="advancedSettings.js"></script>
+  </body>
+</html>

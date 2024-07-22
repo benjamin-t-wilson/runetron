@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RuneTron</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        overflow: hidden; /* Prevent scrollbars on the body */
+      }
+      .titlebar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #c99a35; /* Change this to your desired color */
+        color: white;
+        height: 30px;
+        -webkit-user-select: none;
+        -webkit-app-region: drag;
+        padding: 0 10px;
+      }
+      .titlebar .controls {
+        display: flex;
+        -webkit-app-region: no-drag;
+      }
+      .titlebar .controls button {
+        background: none;
+        border: none;
+        color: white;
+        padding: 0 10px;
+        cursor: pointer;
+      }
+      .titlebar .controls button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      .titlebar img {
+        height: 20px;
+        margin-right: 10px;
+      }
+      .titlebar-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .main {
+        background: url("https://runejs.org/rsbg.0c5036f83fd4ee098623.png")
+          repeat;
+        width: 100%;
+        height: calc(100% - 30px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        padding: 10px;
+        box-sizing: border-box; /* Ensure padding doesn't add to element size */
+        overflow: hidden; /* Prevent scrollbars within the main content area */
+      }
+      .content {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      body {
+        height: 100vh;
+      }
+      .pushable {
+        background: #977222;
+        border: none;
+        border-radius: 12px;
+        padding: 0;
+        cursor: pointer;
+      }
+      .pushable:first-of-type {
+        margin-bottom: 25px;
+      }
+      .front {
+        display: block;
+        padding: 6px 24px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background: #c99a35;
+        color: white;
+        transform: translateY(-4px);
+      }
+
+      .pushable:focus:not(:focus-visible) {
+        outline: none;
+      }
+      .front {
+        will-change: transform;
+        transition: transform 250ms;
+      }
+
+      .pushable:hover .front {
+        transform: translateY(-6px);
+      }
+
+      .pushable:active .front {
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="titlebar">
+      <div class="titlebar-content">
+        <img src="assets/icon.ico" alt="App Icon" />
+        <span>RuneTron</span>
+      </div>
+      <div class="controls">
+        <button id="close">close</button>
+      </div>
+    </div>
+    <div class="main">
+      <div class="content">
+        <button id="playNowButton" class="pushable">
+          <span class="front">Play Now</span>
+        </button>
+        <button id="advancedSettingsButton" class="pushable">
+          <span class="front">Advanced Settings</span>
+        </button>
+      </div>
+      <p id="statusMessage"></p>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>
